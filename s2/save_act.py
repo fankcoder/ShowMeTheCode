@@ -3,7 +3,7 @@ import MySQLdb
 f = open('activation.txt','r')
 lines = f.readlines()
 f.close()
-conn = MySQLdb.connect(host='localhost',user='root',passwd='icgoozf',db='showmethecode')
+conn = MySQLdb.connect(host='localhost',user='root',passwd='****',db='showmethecode')
 cursor = conn.cursor()
 for line in lines:
     line = line.strip()
