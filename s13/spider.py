@@ -1,0 +1,23 @@
+import requests
+import re
+from bs4 import BeautifulSoup
+import urllib
+
+def saveImg(imageURL,fileName):
+     u = urllib.urlopen(imageURL)
+     data = u.read()
+     f = open(fileName, 'wb')
+     f.write(data)
+     f.close()
+
+r = requests.get('http://tieba.baidu.com/p/3966572700?pn=3')
+alltxt = r.text
+pattern = re.compile('''<img class="BDE_Image" src=".*?" pic_ext="jpeg".*?>''')
+compilte = pattern.findall(alltxt)
+num = 0
+for each in compilte:
+    soup = BeautifulSoup(each)
+    imgLink = soup.img["src"]
+    filename = '/home/fank/pywork/show_me_the_code/s13/img/%s.jpg' %num
+    num += 1
+    saveImg(imgLink,filename)
