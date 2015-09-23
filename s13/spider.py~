@@ -19,6 +19,6 @@ for each in compilte:
     soup = BeautifulSoup(each)
     imgLink = soup.img["src"]
     #filename = '/home/icgoo/pywork/show_me_the_code/s13/img/%s.jpg' %num
-    filename = './img/%s.jpg' %num
+    filename = '/img/%s.jpg' %num
     num += 1
     saveImg(imgLink,filename)
