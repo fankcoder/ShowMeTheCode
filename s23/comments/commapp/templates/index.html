@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+</head>
+<body>
+    <h1>留言板</h1>
+    <div id="form">
+    <form name="input" method="get">
+    姓名:
+    <input type="text" name="user" />
+    <br />
+    内容:
+    <input type="text" name="comment" />
+    <br />
+    <input type="submit" value="提交" />
+    </form>
+    </div>
+    <div id="history">
+        <h2>留言历史信息</h2>
+        
+    </div>
+</body>
+</html>
