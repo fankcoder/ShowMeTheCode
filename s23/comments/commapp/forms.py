@@ -1,6 +1,6 @@
 from django import forms
 
-class CommentFrom(forms.Form):
-    username = forms.CharField(max_length=20)
-    usercomment = forms.CharField(max_length=1200)
-    
+class CommentForm(forms.Form):
+    username = forms.CharField(label='Your name',max_length=20)
+    usercomment = forms.CharField(label='Your comment',max_length=1200)
+
