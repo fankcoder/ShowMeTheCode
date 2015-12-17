@@ -20,7 +20,7 @@
     </form>
     </div>
     -->
-    <form name="comment_date" method="post">
+    <form  method="post">
         {% csrf_token %}
         <tr><td><lable for='id_name'>name:</lable></td><td>{{ form.name }}</td><td>{{ form.name.errors }}</td></tr>
         <br />
@@ -32,6 +32,10 @@
         <h2>留言历史信息</h2>
         {% for each in comment %}
         <li><p>{{each.name}} 留言于 ({{each.create_time}})</p>
+        <form  method="get">
+            <!--<button type="button" name="del" value="{{each.id}}">delete!</button>-->
+            <input type="submit" name="del" value="{{each.id}}"/>
+        </form>
         <div id="connect">
         <p>{{each.comments}}</p></li>
         {%endfor%}

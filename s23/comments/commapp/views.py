@@ -13,11 +13,16 @@ def index(request):
                 pass#print each.name,each.create_time
             connect = {'form':form,'comment':comment}
             return render(request,"index.html", connect)
-    else:
-        form = Comment()
 
-    #print form.username
-    #print type(data)
+    elif 'del' in request.GET:
+        #form = Comment()
+        print request.GET['del']
+        id_num = request.GET['del']
+        CommentData.objects.filter(id=id_num).delete()
+        comment = CommentData.objects.all()[::-1]
+        connect = {'form':form,'comment':comment}
+        return render(request,"index.html",connect)
+
     #print data['user']
     #username = CommentFrom.username(data['username'])
     #usercomment = CommentFrom.usercomment(data['usercomment'])
