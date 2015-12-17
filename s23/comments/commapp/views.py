@@ -1,15 +1,20 @@
-from django.shortcuts import render
-from commapp.models import comdata
-
-from forms import CommentForm
+from django.shortcuts import render,render_to_response
+from .forms import Comment
+from .models import CommentData
 
 def index(request):
-    if request.method=='request.POST':
-        form = CommentFrom(request.POST)
-        if form.is_vaild():
-            print 'get data'
+    form = Comment()
+    if request.method=='POST':
+        form = Comment(request.POST)
+        if form.is_valid():
+            form.save()
+            comment = CommentData.objects.all()[::-1]
+            for each in comment:
+                pass#print each.name,each.create_time
+            connect = {'form':form,'comment':comment}
+            return render(request,"index.html", connect)
     else:
-        form = CommentForm()
+        form = Comment()
 
     #print form.username
     #print type(data)
