@@ -1,2 +1,11 @@
-h1 {background-color:blue;}
-#form {background-color:#6495ed;}
+body,h1,p {margin:0;padding:0;}
+h1 {color:#FFF;background-color:#004080;}
+
+
+#input {background-color:#78B8F8;}
+#input_form,#input p {padding-left:20px;}
+#input_submit {margin-top:10px;}
+
+h2,#author,#connect p{color:#004080;margin-left:20px;}
+#del_submit {margin:10px 0px 0px 20px;}
+

@@ -1,46 +1,46 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>留言板</title>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
-    <h1>留言板</h1>
-    <!--
-    <div id="form">
-    <form name="input" method="get">
-    姓名:
-    <input type="text" name="user" />
-    <br />
-    内容:
-    <input type="text" name="comment" />
-    <br />
-    <input type="submit" value="提交" />
-    </form>
-    </div>
-    -->
-    <form  method="post">
+    <h1>message</h1>
+    <div id="input"><p>put your message here:</p>
+    <form  id="input_form" method="post">
         {% csrf_token %}
         <tr><td><lable for='id_name'>name:</lable></td><td>{{ form.name }}</td><td>{{ form.name.errors }}</td></tr>
         <br />
         <tr><td><lable for='id_comment'>comment:</lable></td><td>{{ form.comments }}</td><td>{{ form.comments.errors }}</td></tr>
         <br />
-        <input type="submit" value="提交" />
+        <input id="input_submit" type="submit" value="提交" />
     </form>
+    </div>
     <div id="history">
-        <h2>留言历史信息</h2>
-        {% for each in comment %}
-        <li><p>{{each.name}} 留言于 ({{each.create_time}})</p>
-        <form  method="get">
-            <!--<button type="button" name="del" value="{{each.id}}">delete!</button>-->
-            <input type="submit" name="del" value="{{each.id}}"/>
-        </form>
-        <div id="connect">
-        <p>{{each.comments}}</p></li>
-        {%endfor%}
-        </div>
-        </ol>
+        <h2>message history</h2>
+            <div id="author">
+                {% for each in comment %}
+                <p>{{each.name}} 留言于 ({{each.create_time}})</p>
+                <!--<div id="del_submit">
+                <form  method="get">
+                    <input type="hidden" name="del" value="{{each.id}}" />
+                    <input type="submit" name="sub" value="delete" />
+                </form>
+                </div>-->
+                </div>
+                <div id="connect">
+                <p>{{each.comments}}</p>
+                    <div id="del_submit">
+                    <form method="get">
+                        <input type="hidden" name="del" value="{{each.id}}" />
+                        <input type="submit" name="sub" value="delete" />
+                    </form>
+                    </div>
+                <hr />
+                {%endfor%}
+                </div>
     </div>
 </body>
 </html>
