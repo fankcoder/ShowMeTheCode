@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>
+</head>
+<body>
+<div>
+<form action="" method="get">
+<input type="button" value="create">
+</form>
+</div>
+
+<form method="post">
+    {%csrf_token%}
+    title : <input type="text" name="title" /><br />
+    content : <input type="text" name="content" /><br />
+    level : <input type="radio" name="level" value="0" />green
+    <input type="radio" name="level" value="1" />blue
+    <input type="radio" name="level" value="2" />yellow
+    <input type="radio" name="level" value="3" />red
+    <br />
+    <input type="submit" value="提交" />
+</form>
+<div>
+{%for each in data%}
+{{each.title}}
+{{each.content}}
+{{each.level}}
+<br />
+{%endfor%}
+</div>
+</body>
+</html>
