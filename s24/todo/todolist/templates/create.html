@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>
+</head>
+<body>
+<h1>创建任务</h1>
+<form for="list" method="post">
+    {%csrf_token%}
+    title : <input type="text" for="list" name="title" />{{ form.title.errors }}<br />
+    content : <input type="text" name="content" />{{ form.content.errors}}<br />
+    level : <input type="radio" name="level" value="0" />green
+    <input type="radio" name="level" value="1" />blue
+    <input type="radio" name="level" value="2" />yellow
+    <input type="radio" name="level" value="3" />red
+    <br />
+    <input type="submit" value="提交" />
+</form>
+
+</body>
+</html>

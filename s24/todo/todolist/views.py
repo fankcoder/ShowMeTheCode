@@ -12,7 +12,7 @@ def index(request):
         if form.is_valid():
             form.save()
             data = List.objects.all()[::-1]
-            context = {'data':data}
+            context = {'form':form,'data':data}
             for each in  data:
                 print each.levelist[0]
             return render(request,'index.html',context)
@@ -24,5 +24,8 @@ def index(request):
         data = List.objects.all()[::-1]
         context = {'data':data}
         return render(request,"index.html",context)
+
+    elif 'create' in request.GET:
+        return render(request,"create.html")
 
     return render(request,'index.html')
