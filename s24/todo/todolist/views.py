@@ -13,8 +13,8 @@ def index(request):
             form.save()
             data = List.objects.all()[::-1]
             context = {'form':form,'data':data}
-            for each in  data:
-                print each.levelist[0]
+            #for each in  data:
+            #    print each.levelist[0]
             return render(request,'index.html',context)
 
     elif 'del' in request.GET:
@@ -28,4 +28,8 @@ def index(request):
     elif 'create' in request.GET:
         return render(request,"create.html")
 
-    return render(request,'index.html')
+    try:
+        data = List.objects.all()[::-1]
+    except:
+        print "there is no data"
+    return render(request,'index.html',{'data':data})
