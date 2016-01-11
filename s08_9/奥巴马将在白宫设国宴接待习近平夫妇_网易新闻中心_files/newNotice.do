@@ -1,1 +1,0 @@
-lofterInfoCallback('0');
