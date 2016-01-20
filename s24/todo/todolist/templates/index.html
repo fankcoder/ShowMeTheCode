@@ -1,45 +1,62 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Todolist</title>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 <body>
-<div>
-<form action="" method="get">
-<input type="submit" value="create" name="create" />
-</form>
-</div>
-<!--
-<form for="list" method="post">
-    {%csrf_token%}
-    title : <input type="text" for="list" name="title" />{{ form.title.errors }}<br />
-    content : <input type="text" name="content" />{{ form.content.errors}}<br />
-    level : <input type="radio" name="level" value="0" />green
-    <input type="radio" name="level" value="1" />blue
-    <input type="radio" name="level" value="2" />yellow
-    <input type="radio" name="level" value="3" />red
-    <br />
-    <input type="submit" value="提交" />
-</form>
--->
 
-<div>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+             <form action="" method="get">
+                <input type="submit" value="create" name="create" class="btn btn-default btn-block btn-primary" />
+             </form>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            <div id="content">
+                {%for each in data%}
+                <script>
+                    $(document).ready(function(){
+                        if ($(".h{{each.level}}").attr("class") == "h0"){
+                            $(".h{{each.level}}").attr("class","label label-success");
+                        }
+                        if ($(".h{{each.level}}").attr("class") == "h1"){
+                            $(".h{{each.level}}").attr("class","label label-info");
+                        }
+                        if ($(".h{{each.level}}").attr("class") == "h2"){
+                            $(".h{{each.level}}").attr("class","label label-warning");
+                        }
+                        if ($(".h{{each.level}}").attr("class") == "h3"){
+                            $(".h{{each.level}}").attr("class","label label-danger");
+                        }
+                    });
+                </script> 
+                <h2 class="h{{each.level}}">{{each.title}}</h2>
+                {{each.level}}
+                <p>{{each.content}}<p>
+                        <form method="get" id="delete">
+                        <input type="hidden" name="del" value="{{each.id}}" />
+                        <input type="submit" name="sub" class="btn btn-default btn-inverse" value="delete" />
+                        <br />
+                        </form>
+                <br />
+                {%endfor%}
+            </div>
+			<p>
+				 <a class="btn" href="#">查看更多</a>
+			</p>
+		</div>
+	</div>
 </div>
 
-<div>
-{%for each in data%}
-{{each.title}}
-{{each.content}}
-{{each.level}}
-    <div id="del_submit">
-    <form method="get">
-    <input type="hidden" name="del" value="{{each.id}}" />
-    <input type="submit" name="sub" value="delete" />
-    </form>
-    </div>
-<br />
-{%endfor%}
-</div>
+
 </body>
 </html>

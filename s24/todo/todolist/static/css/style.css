@@ -1,0 +1,5 @@
+body,h1,p {margin:0;padding:0;}
+
+.container {margin-top:30px;}
+#content {margin-top:10px;}
+#delete {position:relative;top:-40px;left:1050px;}
